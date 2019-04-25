@@ -21,21 +21,16 @@ class App extends React.Component {
         })
     }
 
-    addTask(){
+
+    addTask = (event) => {
+     event.preventDefault();
         let { task, tasks } = this.state; // pull object literal property values, give them a state
         this.setState({ //setting state to:
             task: '', //input
             tasks: [...tasks, task] //taking previous array, adding task to the array
-        })
+        });
     }
 
-      addStudent = event => {
-    event.preventDefault();
-    this.setState({
-      studentsOnState: [...this.state.studentsOnState, this.state.student],
-      student: {}
-    });
-  };
 
     removeTask(index){
         let { tasks } = this.state; //pull task, given a state
@@ -50,9 +45,10 @@ class App extends React.Component {
 
         return (
           <div className="listStyle">
-          <form onSubmit={this.addTask}>
+          <form>
             <input value={task} onChange={this.handleChanges}/> {/*onChange is an input event handler, everytime there is an event, like a keystroke, react will call this callback function, passing in the event */}
-            <button>Add task</button>
+            <button onClick={this.addTask}>Add task</button>
+            <button onClick={this.addTask}>Remove task</button>
           </form>
           <TodoList tasks={this.state.tasks} />
           </div>
