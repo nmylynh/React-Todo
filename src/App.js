@@ -5,7 +5,8 @@ class App extends React.Component {
     super(props); //so that app can use react.components
     this.state = { //App.state property
       task:'', //input
-      tasks: [] //stores input
+      tasks: [], //stores input
+      id: Date.now()
     }
     //binding event handlers to avoid global pointers
     this.handleChanges = this.handleChanges.bind(this);
@@ -21,11 +22,20 @@ class App extends React.Component {
 
     addTask(){
         let { task, tasks } = this.state; // pull object literal property values, give them a state
+        event.preventDefault();
         this.setState({ //setting state to:
             task: '', //input
             tasks: [...tasks, task] //taking previous array, adding task to the array
         })
     }
+
+      addStudent = event => {
+    event.preventDefault();
+    this.setState({
+      studentsOnState: [...this.state.studentsOnState, this.state.student],
+      student: {}
+    });
+  };
 
     removeTask(index){
         let { tasks } = this.state; //pull task, given a state
