@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoList from './components/TodoComponents/TodoList';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class App extends React.Component {
 
     addTask(){
         let { task, tasks } = this.state; // pull object literal property values, give them a state
-        event.preventDefault();
         this.setState({ //setting state to:
             task: '', //input
             tasks: [...tasks, task] //taking previous array, adding task to the array
@@ -54,6 +54,7 @@ class App extends React.Component {
             <input value={task} onChange={this.handleChanges}/> {/*onChange is an input event handler, everytime there is an event, like a keystroke, react will call this callback function, passing in the event */}
             <button>Add task</button>
           </form>
+          <TodoList tasks={this.state.tasks} />
           </div>
         )
     }
